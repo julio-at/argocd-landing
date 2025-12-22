@@ -3,9 +3,11 @@ image:
   tag: "v0.1.0"
   pullPolicy: IfNotPresent
 
+#
 # If your cluster needs a pull secret, set it here (example):
 # imagePullSecrets:
 #   - name: do-registry
+#
 
 ingress:
   enabled: true
