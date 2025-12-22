@@ -32,5 +32,5 @@ ingress:
   className: nginx
   annotations: {}
   hosts:
-    - demo.example.com
+    - demo.guajiro.xyz
   tls: []
