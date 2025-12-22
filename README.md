@@ -1,4 +1,4 @@
-# landing-argocd-helm
+# Argocd-Landing
 
 A tiny "static landing page" app packaged as:
 - **Docker image** (serves `site/index.html` via NGINX)
