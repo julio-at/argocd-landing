@@ -5,8 +5,12 @@ metadata:
   name: {{ include "landing.fullname" . }}
   labels:
     {{- include "landing.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  {{- if (gt (len .) 0) }}
   annotations:
-    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
 spec:
   ingressClassName: {{ .Values.ingress.className | quote }}
   rules:

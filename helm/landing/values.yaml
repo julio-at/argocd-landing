@@ -1,13 +1,19 @@
 replicaCount: 1
 
 image:
-  repository: "nginx"
+  repository: "nginxinc/nginx-unprivileged"
   tag: "1.27-alpine"
   pullPolicy: IfNotPresent
 
+# For private registries (ex: DOCR)
 imagePullSecrets: []
+# - name: docr-creds
+
 nameOverride: ""
 fullnameOverride: ""
+
+# Container listens here (unprivileged nginx usually uses 8080)
+containerPort: 8080
 
 service:
   type: ClusterIP
@@ -17,12 +23,17 @@ podAnnotations: {}
 
 resources: {}
 
-securityContext:
+podSecurityContext:
   runAsNonRoot: true
-  allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: false
+  runAsUser: 101
+  runAsGroup: 101
+  fsGroup: 101
+  seccompProfile:
+    type: RuntimeDefault
 
 containerSecurityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
   capabilities:
     drop:
       - ALL
@@ -34,3 +45,4 @@ ingress:
   hosts:
     - demo.guajiro.xyz
   tls: []
+
