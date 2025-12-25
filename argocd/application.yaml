@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "git@github.com:julio-at/argocd-landing.git"
-    targetRevision: HEAD
+    repoURL: "https://github.com/julio-at/argocd-landing.git"
+    targetRevision: HEAD 
     path: helm/landing
     helm:
       valueFiles:
-        - values-prod.yaml
+        - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo
@@ -21,3 +21,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
