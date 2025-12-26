@@ -5,16 +5,19 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: "https://github.com/julio-at/argocd-landing.git"
-    targetRevision: HEAD 
+    targetRevision: HEAD
     path: helm/landing
     helm:
       valueFiles:
         - values.yaml
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: demo
+
   syncPolicy:
     automated:
       prune: true
